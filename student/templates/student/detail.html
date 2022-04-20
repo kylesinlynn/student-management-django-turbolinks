@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+
+{% block 'content' %}
+    <form method="POST" action="{% url 'update' student.id %}" class="m-2">
+        {% csrf_token %}
+
+        <div class="mb-3 row">
+            <label for="id" class="col-sm-2 col-form-label">ID</label>
+            <div class="col-sm-10">
+                <input type="text" readonly class="form-control-plaintext" id="id" value="{{ student.id }}">
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="name" class="col-sm-2 col-form-label">Name</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="name" id="name" value="{{ student.name }}">
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="dob" class="col-sm-2 col-form-label">DOB</label>
+            <div class="col-sm-10">
+                <input type="date" class="form-control" name="dob" id="dob" value="{{ student.dob }}">
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="nrc" class="col-sm-2 col-form-label">NRC</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="nrc" id="nrc" value="{{ student.nrc }}">
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="phone" class="col-sm-2 col-form-label">Phone</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="phone" id="phone" value="{{ student.phone }}">
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="Contact" class="col-sm-2 col-form-label">Contact</label>
+            <div class="col-sm-10">
+                <select value="{{ student.contact }}" class="form-control" name="contact" id="contact">
+                    <option value="Yangon">Yangon</option>
+                    <option value="Mandalay">Mandalay</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="mb-12 col">
+            <a href="{% url 'create' %} " class="btn btn-secondary">Create</a>
+            <button class="btn btn-primary" type="submit">Save</button>
+            <a href="{% url 'delete' student.id %} " class="btn btn-danger">Delete</a>
+        </div>
+    </form>
+
+    <form method="POST" action="{% url 'add_score' student.id %}" class="m-2">
+        {% csrf_token %}
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th class="table-secondary">#id</th>
+                    <th class="table-secondary">Year</th>
+                    <th class="table-secondary">Mark</th>
+                    <th class="table-secondary">Remark</th>
+                    <th class="table-secondary">Action</th>
+                </tr>
+            <thead>
+            <tbody>
+                {% for score in scores %}
+                <tr>
+                    <td class="table-secondary">
+                        {{ score.id }}
+                    </td>
+                    <td class="table-secondary">
+                        {{ score.year }}
+                    </td>
+                    <td class="table-secondary">
+                        {{ score.mark }}
+                    </td>
+                    <td class="table-secondary">
+                        {{ score.remark }}
+                    </td>
+                    <td class="table-secondary">
+                        <a href="{% url 'delete_score' score.id %}" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+
+                <tr>
+                    <td class="table-secondary">
+                        <input type="text" class="form-control" name="dtlid">
+                    </td>
+                    <td class="table-secondary">
+                        <input type="text" class="form-control" name="year">
+                    </td>
+                    <td class="table-secondary">
+                        <input type="text" class="form-control" name="mark">
+                    </td>
+                    <td class="table-secondary">
+                        <input type="text" class="form-control" name="remark">
+                    </td>
+                    <td class="table-secondary">
+                        <input type="submit" class="form-control btn-info" value="Add">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+
+{% endblock %}

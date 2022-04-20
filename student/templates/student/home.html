@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block 'content' %}
+<div class="m-2 col-12">
+    <a href="{% url 'create' %}" class="btn btn-outline-primary">Create</a>
+</div>
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">NRC</th>
+        <th scope="col">DOB</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Contact</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for student in students %}
+        <tr>
+            <th scope="row">{{ student.id }}</th>
+            <td>{{ student.name }}</td>
+            <td>{{ student.nrc }}</td>
+            <td>{{ student.dob }}</td>
+            <td>{{ student.phone }}</td>
+            <td>{{ student.contact }}</td>
+            <td>
+                <a href="{% url 'detail' student_id=student.id %}">Edit</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
