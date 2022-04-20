@@ -44,7 +44,7 @@ def add_score(request, student_id):
         student = Student.objects.get(id=student_id)
         score = Score()
         score.student = student
-        score.dtlid = request.POST['dtlid']
+        score.dltid = request.POST['dltid']
         score.year = request.POST['year']
         score.mark = request.POST['mark']
         score.remark = request.POST['remark']

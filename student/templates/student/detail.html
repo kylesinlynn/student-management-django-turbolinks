@@ -56,7 +56,7 @@
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th class="table-secondary">#Dtlid</th>
+                    <th class="table-secondary">Dltid</th>
                     <th class="table-secondary">Year</th>
                     <th class="table-secondary">Mark</th>
                     <th class="table-secondary">Remark</th>
@@ -67,7 +67,7 @@
                 {% for score in scores %}
                 <tr>
                     <td class="table-secondary">
-                        {{ score.id }}
+                        {{ score.dltid }}
                     </td>
                     <td class="table-secondary">
                         {{ score.year }}
@@ -86,7 +86,7 @@
 
                 <tr>
                     <td class="table-secondary">
-                        <input required type="text" class="form-control" name="dtlid">
+                        <input required type="text" class="form-control" name="dltid">
                     </td>
                     <td class="table-secondary">
                         <input required type="text" class="form-control" name="year">
