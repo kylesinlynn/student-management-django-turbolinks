@@ -31,7 +31,7 @@ class Student(models.Model):
 
 class Score(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
-    dltid = models.CharField(max_length=10, null=True, blank=True)
+    dltid = models.CharField(max_length=10)
     year = models.CharField(max_length=4)
     mark = models.IntegerField()
     remark = models.TextField(max_length=280)
